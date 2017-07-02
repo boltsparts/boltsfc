@@ -1,0 +1,27 @@
+---
+- filename: profile_i.py
+  author: Bernd Hahnebach <bernd@bimstatik.org>
+  license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
+  type: function
+  functions:
+    - name: ibeam_parallel_flange
+      parameters:
+        free: [arch]
+        types:
+          arch: Bool
+        description:
+          arch: If true, an Arch structure is created, if false, a Part feature.
+        defaults:
+          arch: false
+      classids: [ibeam_hea, ibeam_heaa, ibeam_heb, ibeam_hem, ibeam_ipe, ibeam_ipe750, ibeam_ipea, ibeam_ipeo, ibeam_iper, ibeam_ipev]
+    - name: ibeam_angled_flange
+      parameters:
+        free: [arch]
+        types:
+          arch: Bool
+        description:
+          arch: If true, an Arch structure is created, if false, a Part feature.
+        defaults:
+          arch: false
+      classids: [inp]
+...

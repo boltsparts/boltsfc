@@ -1,0 +1,469 @@
+#BOLTS - Open Library of Technical Specifications
+#Copyright (C) 2013 Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+#
+#This library is free software; you can redistribute it and/or
+#modify it under the terms of the GNU Lesser General Public
+#License as published by the Free Software Foundation; either
+#version 2.1 of the License, or any later version.
+#
+#This library is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#Lesser General Public License for more details.
+#
+#You should have received a copy of the GNU Lesser General Public
+#License along with this library; if not, write to the Free Software
+#Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+---
+id: hex_socket
+name: Hexagon socket fasteners
+description: Various standard hex socket bolts and screws
+author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
+blt-version: 0.4
+classes:
+  - id: hexsocketcountersunk
+    names:
+      name: Metric hex socket countersunk head screw
+      labeling: Hex socket countersunk head screw %(key)s %(l)s
+      description: Hexagon socket countersunk head screw, metric sizes
+    standards:
+      - body: ISO
+        standard: ISO 10642
+        labeling: Hex socket countersunk head screw ISO 10642 %(key)s %(l)s
+        description: Hexagon socket countersunk head screw, metric sizes
+      - body: DINISO
+        standard: DIN ISO 10642
+        labeling: Hex socket countersunk head screw DIN ISO 10642 %(key)s %(l)s
+        description: Hexagon socket countersunk head screw, metric sizes
+      - body: DIN
+        standard: DIN 7991
+        labeling: Hex socket countersunk head screw DIN 7991 %(key)s %(l)s
+        description: Hexagon socket countersunk head screw, metric sizes
+    parameters:
+        free: [key, l]
+        defaults: {key: "M3", l: 20}
+        types:
+          key: Table Index
+          l: Length (mm)
+          d1: Length (mm)
+          d2: Length (mm)
+          b1: Length (mm)
+          b2: Length (mm)
+          b3: Length (mm)
+          k_max: Length (mm)
+          s: Length (mm)
+          t: Length (mm)
+          alpha: Angle (deg)
+          L: Length (mm)
+          h_max: Length (mm)
+        description:
+          key: Thread designation
+          l: shaft length
+          d1: shaft diameter
+          d2: head diameter
+          b1: threaded length of shaft for l < 125 mm
+          b2: threaded length of shaft for 125 mm < l < 200 mm
+          b3: threaded length of shaft for l > 200 mm
+          k_max: head length
+          s: width across flats
+          t: socket depth
+          alpha: head angle
+          L: threshold threading length, shaft is completely threaded for screws shorter than L
+          h_max: maximum unthreaded length of shaft
+        tables:
+            index: key
+            columns: [d1, d2, b1, b2, b3, k_max, s, t, alpha, L, h_max]
+            data:
+                #key   [  d1    d2   b1     b2     b3     k_max  s      t      alpha,  L      h_max  ]
+                M2:    [  2,    4,   None,  None,  None,  1.2,   1.25,  None,  90,     12,    None   ]
+                M2.5:  [  2.5,  5,   None,  None,  None,  1.5,   1.5,   None,  90,     16,    None   ]
+                M3:    [  3,    6,   12,    None,  None,  1.7,   2,     1.2,   90,     30,    3.2    ]
+                M4:    [  4,    8,   14,    None,  None,  2.3,   2.5,   1.8,   90,     30,    4.4    ]
+                M5:    [  5,    10,  16,    None,  None,  2.8,   3,     2.3,   90,     35,    5.2    ]
+                M6:    [  6,    12,  18,    24,    None,  3.3,   4,     2.5,   90,     40,    6.3    ]
+                M8:    [  8,    16,  22,    28,    None,  4.4,   5,     3.5,   90,     45,    8.2    ]
+                M10:   [  10,   20,  26,    32,    45,    5.5,   6,     4.4,   90,     55,    10     ]
+                M12:   [  12,   24,  30,    36,    49,    6.5,   8,     4.6,   90,     60,    11.8   ]
+                M14:   [  14,   27,  34,    40,    None,  7,     10,    4.8,   90,     65,    13     ]
+                M16:   [  16,   30,  38,    44,    57,    7.5,   10,    5.3,   90,     70,    13.5   ]
+                M18:   [  18,   33,  43,    None,  None,  8,     12,    None,  90,     60,    None   ]
+                M20:   [  20,   36,  46,    52,    65,    8.5,   12,    5.9,   90,     90,    16     ]
+                M22:   [  22,   36,  None,  None,  None,  13.1,  14,    None,  None,   None,  None   ]
+                M24:   [  24,   39,  54,    60,    None,  14,    14,    10.3,  60,     90,    23     ]
+    source: http://almetal.nl/en/techinfo/soc/sd7991.htm
+    notes: The OpenSCAD base module does not use alpha
+  - id: hexsocketheadcap
+    names:
+      name: Metric hex socket head cap screw
+      labeling: Hex socket head cap screw %(key)s %(l)s
+      description: Hexagon socket head cap screw, metric sizes
+    standards:
+      - body: ISO
+        standard: ISO 4762
+        labeling: Hex socket head cap screw ISO 4762 %(key)s %(l)s
+        description: Hexagon socket head cap screw
+      - body: DINENISO
+        standard: DINENISO 4762
+        labeling: Hex socket head cap screw DINENISO 4762 %(key)s %(l)s
+        description: Hexagon socket head cap screw
+      - body: DIN
+        standard: DIN 912
+        labeling: Hex socket head cap screw DIN 912 %(key)s %(l)s
+        description: Hexagon socket head cap screw
+    parameters:
+        free: [key, l]
+        defaults: {key: "M3", l: 20}
+        types:
+          key: Table Index
+          l: Length (mm)
+          d1: Length (mm)
+          d2: Length (mm)
+          k: Length (mm)
+          s: Length (mm)
+          b: Length (mm)
+          t_min: Length (mm)
+          L: Length (mm)
+        description:
+          key: Thread designation
+          l: shaft length
+          d1: shaft diameter
+          d2: head diameter
+          k: head length
+          s: width across flats
+          b: threaded length of shaft
+          t_min: socket depth
+          L: threshold threading length, shaft is completely threaded for screws shorter than L
+        common:
+          - [[M3],[20,30]]
+          - [[M4],[10,12,16,20,25]]
+          - [[M5],[8,10,12,16,20,25,30,35,40,50,60]]
+          - [[M6],[10,12,16,20,25,30,35,40,50,60]]
+          - [[M8],[16,20,25,30,35,40,50,60,70]]
+          - [[M10],[30,40,50,60,80]]
+        tables:
+            index: key
+            columns: [d1, d2, b, k, s, t_min, L]
+            data:
+                #key   [  d1    d2     b      k     s      t_min  L     ]
+                M1.4:  [  1.4,  2.6,   None,  1.4,  1.25,  None,  12    ]
+                M1.6:  [  1.6,  3,     15,    1.6,  1.5,   0.7,   16    ]
+                M1.8:  [  1.8,  3.4,   None,  1.8,  1.5,   None,  16    ]
+                M2:    [  2,    3.8,   16,    2,    1.5,   1,     20    ]
+                M2.5:  [  2.5,  4.5,   17,    2.5,  2,     1.1,   25    ]
+                M3:    [  3,    5.5,   18,    3,    2.5,   1.3,   20    ]
+                M4:    [  4,    7,     20,    4,    3,     2,     25    ]
+                M5:    [  5,    8.5,   22,    5,    4,     2.5,   25    ]
+                M6:    [  6,    10,    24,    6,    5,     3,     30    ]
+                M8:    [  8,    13,    28,    8,    6,     4,     35    ]
+                M10:   [  10,   16,    32,    10,   8,     5,     40    ]
+                M12:   [  12,   18,    36,    12,   10,    6,     50    ]
+                M14:   [  14,   21,    40,    14,   12,    7,     55    ]
+                M16:   [  16,   24,    44,    16,   14,    8,     60    ]
+                M18:   [  18,   27,    48,    18,   14,    9,     65    ]
+                M20:   [  20,   30,    52,    20,   17,    10,    70    ]
+                M22:   [  22,   33,    56,    22,   17,    11,    75    ]
+                M24:   [  24,   36,    60,    24,   19,    12,    80    ]
+                M27:   [  27,   40,    66,    27,   19,    13.5,  90    ]
+                M30:   [  30,   45,    72,    30,   22,    15.5,  100   ]
+                M33:   [  33,   50,    78,    33,   24,    18,    100   ]
+                M36:   [  36,   54,    84,    36,   27,    19,    110   ]
+                M42:   [  42,   63,    96,    42,   32,    24,    130   ]
+                M48:   [  48,   72,    108,   48,   36,    28,    150   ]
+                M52:   [  52,   78,    116,   52,   36,    31,    None  ]
+                M56:   [  56,   84,    124,   56,   41,    34,    None  ]
+                M64:   [  64,   96,    140,   64,   46,    38,    None  ]
+    source: http://almetal.nl/en/techinfo/soc/sd912.htm, common parameters from http://shop.zweygart.de/befestigung/schrauben-metrisch/zylinderkopf/p29246.html
+  - id: hexsocketsetscrewflat
+    standards:
+      - body: DIN
+        standard: DIN 913
+        labeling: Hex socket set screw flat point DIN 913 %(key)s %(l)s
+        description: Hexagon socket set screw with flat point
+      - body: ISO
+        standard: ISO 4026
+        labeling: Hex socket set screw flat point ISO 4026 %(key)s %(l)s
+        description: Hexagon socket set screw with flat point
+    parameters:
+      free: [key,l]
+      types:
+        key: Table Index
+        l: Length (mm)
+        d: Length (mm)
+        d1: Length (mm)
+        t: Length (mm)
+        s: Length (mm)
+        e: Length (mm)
+        point: String
+      defaults: {key: M10, l: 20}
+      description:
+        key: Thread designation
+        l: total length
+        d: diameter
+        d1: maximum point diameter
+        t: socket depth
+        s: width across flats
+        e: width across edges
+        point: point type
+      literal: {point: flat}
+      common:
+        - [[M3], [4,5,6,8,10,16,20]]
+        - [[M4], [4,5,6,8,10,12,16,20]]
+        - [[M5], [5,6,8,10,12,16,20,25]]
+        - [[M6], [5,6,8,10,12,16,20,25,30,35,40]]
+        - [[M8], [6,8,10,12,16,20,25,30,35,40]]
+        - [[M10], [8,10,12,16,20,25,30,35,40,50,55,60,70,80,100]]
+        - [[M12], [12,16,20,25,30,40,50,60,70,100]]
+        - [[M16], [20,25,30,40,60,80,100]]
+        - [[M20], [60]]
+      tables:
+        index: key
+        columns: [d,d1,t,e,s]
+        data:
+          "M3" : [  3, 2,   1.2, 1.73, 1.5 ]
+          "M4" : [  4, 2.5, 1.5, 2.3,  2   ]
+          "M5" : [  5, 3.5, 2,   2.87, 2.5 ]
+          "M6" : [  6, 4,   2,   3.44, 3   ]
+          "M8" : [  8, 5.5, 3,   4.58, 4   ]
+          "M10": [ 10, 7,   4,   5.72, 5   ]
+          "M12": [ 12, 8.5, 4.8, 6.86, 6   ]
+          "M16": [ 16, 12,  6.4, 9.15, 8   ]
+          "M20": [ 20, 15,  8,   11.43,10  ]
+    source: http://www.fullermetric.com/products/socket/din913socket_set_screw_flat_point.aspx
+  - id: hexsocketsetscrewcone
+    standards:
+      - body: DIN
+        standard: DIN 914
+        labeling: Hex socket set screw cone point DIN 914 %(key)s %(l)s
+        description: Hexagon socket set screw with cone point
+      - body: ISO
+        standard: ISO 4027
+        labeling: Hex socket set screw flat cone ISO 4027 %(key)s %(l)s
+        description: Hexagon socket set screw with cone point
+    parameters:
+      free: [key,l]
+      types:
+        key: Table Index
+        l: Length (mm)
+        d: Length (mm)
+        d1: Length (mm)
+        t: Length (mm)
+        s: Length (mm)
+        e: Length (mm)
+        point: String
+      defaults: {key: M10, l: 20}
+      description:
+        key: Thread designation
+        l: total length
+        d: diameter
+        d1: maximum point diameter
+        t: socket depth
+        s: width across flats
+        e: width across edges
+        point: point type
+      literal: {point: cone}
+      common:
+        - [[M3], [3,4,5,6,8,10]]
+        - [[M4], [4,5,6,8,10,12,16]]
+        - [[M5], [5,6,8,10,12,16]]
+        - [[M6], [6,8,10,12,16,20,40]]
+        - [[M8], [8,10,12,16,20,25,30]]
+        - [[M10], [10,16,20,25,30,35,40]]
+        - [[M12], [12,16,20,30,50]]
+      tables:
+        index: key
+        columns: [d,d1,t,e,s]
+        data:
+          "M3" : [  3, None, 1.2, 1.73, 1.5 ]
+          "M4" : [  4, None, 1.5, 2.3,  2   ]
+          "M5" : [  5, None, 2,   2.87, 2.5 ]
+          "M6" : [  6, 1.5,  2,   3.44, 3   ]
+          "M8" : [  8, 2,    3,   4.58, 4   ]
+          "M10": [ 10, 2.5,  4,   5.72, 5   ]
+          "M12": [ 12, 3,    4.5, 6.86, 6   ]
+    source: http://www.fullermetric.com/products/socket/din914socket_set_screw_cone_point.aspx
+  - id: hexsocketsetscrewdog
+    standards:
+      - body: DIN
+        standard: DIN 915
+        labeling: Hex socket set screw dog point DIN 915 %(key)s %(l)s
+        description: Hexagon socket set screw with dog point
+      - body: ISO
+        standard: ISO 4028
+        labeling: Hex socket set screw dog cone ISO 4028 %(key)s %(l)s
+        description: Hexagon socket set screw with dog point
+    parameters:
+      free: [key,l]
+      types:
+        key: Table Index
+        l: Length (mm)
+        d: Length (mm)
+        d1: Length (mm)
+        t: Length (mm)
+        s: Length (mm)
+        e: Length (mm)
+        point: String
+      defaults: {key: M10, l: 20}
+      description:
+        key: Thread designation
+        l: total length
+        d: diameter
+        d1: maximum point diameter
+        t: socket depth
+        s: width across flats
+        e: width across edges
+        point: point type
+      literal: {point: dog}
+      common:
+        - [[M3], [3,4,5,6,8,10,12,16]]
+        - [[M4], [4,5,6,8,10,12,16]]
+        - [[M5], [5,6,8,10,12,16]]
+        - [[M6], [6,8,10,12,16,20]]
+        - [[M8], [8,10,12,16,20,25,30,35,40]]
+        - [[M10], [10,16,20,25,30,35,40,45,50]]
+        - [[M12], [12,16,20,25,30,35,40,45,50,60,90]]
+        - [[M16], [20,35,45,50,60]]
+        - [[M20], [50,60,70,80,90,100]]
+        - [[M24], [80]]
+      tables:
+        index: key
+        columns: [d,d1,t,e,s]
+        data:
+          "M3" : [  3, 2,   1.2, 1.73, 1.5 ]
+          "M4" : [  4, 2.5, 1.5, 2.3,  2   ]
+          "M5" : [  5, 3.5, 2,   2.87, 2.5 ]
+          "M6" : [  6, 4,   2,   3.44, 3   ]
+          "M8" : [  8, 5.5, 3,   4.58, 4   ]
+          "M10": [ 10, 7,   4,   5.72, 5   ]
+          "M12": [ 12, 8.5, 4.8, 6.86, 6   ]
+          "M16": [ 16, 12,  6.4, 9.15, 8   ]
+          "M20": [ 20, 15,  8,   11.43,10  ]
+          "M24": [ 24, 18,  10,  13.72,12  ]
+    source: http://www.fullermetric.com/products/socket/din915socket_set_screw_dog_point.aspx
+  - id: hexsocketsetscrewcup
+    standards:
+      - body: DIN
+        standard: DIN 916
+        labeling: Hex socket set screw cup point DIN 916 %(key)s %(l)s
+        description: Hexagon socket set screw with cup point
+      - body: ISO
+        standard: ISO 4029
+        labeling: Hex socket set screw cup cone ISO 4029 %(key)s %(l)s
+        description: Hexagon socket set screw with cup point
+    parameters:
+      free: [key,l]
+      types:
+        key: Table Index
+        l: Length (mm)
+        d: Length (mm)
+        d1: Length (mm)
+        t: Length (mm)
+        s: Length (mm)
+        e: Length (mm)
+        point: String
+      defaults: {key: M10, l: 20}
+      description:
+        key: Thread designation
+        l: total length
+        d: diameter
+        d1: maximum point diameter
+        t: socket depth
+        s: width across flats
+        e: width across edges
+        point: point type
+      literal: {point: dog}
+      common:
+        - [[M2], [3,4,5,6,8]]
+        - [[M2.5], [3,4,5,6,8,10]]
+        - [[M3], [3,4,5,6,8,10,12,14,16,20,25]]
+        - [[M4], [3,4,5,6,8,10,12,14,16,20,25,30,35]]
+        - [[M5], [5,6,8,10,12,14,16,20,25,30,35,40,45]]
+        - [[M6], [5,6,8,10,12,14,16,20,25,30,35,40,45,50]]
+        - [[M8], [6,8,10,12,14,16,20,25,30,35,40,45,50,60]]
+        - [[M10], [8,10,12,14,16,20,25,30,35,40,45,50,60]]
+        - [[M12], [10,12,14,16,20,25,30,35,40,45,50,60,70,80]]
+        - [[M14], [14,16,20,25,30,35,40]]
+        - [[M16], [16,20,25,30,35,40,45,50,60,70,80,100]]
+        - [[M20], [20,25,30,35,40,45,50,60,65,70,80,130]]
+        - [[M24], [25,30,40,45,60,70,80,90]]
+      tables:
+        index: key
+        columns: [d,d1,t,e,s]
+        data:
+          "M2"   : [  2, 1,   0.8, 1.003, 0.9 ]
+          "M2.5" : [2.5, 1.2, 1.2, 1.427, 1.5 ]
+          "M3"   : [  3, 1.4, 1.2, 1.73,  1.5 ]
+          "M4"   : [  4, 1.5, 1.5, 2.3,   2   ]
+          "M5"   : [  5, 2,   2,   2.87,  2.5 ]
+          "M6"   : [  6, 3,   2,   3.44,  3   ]
+          "M8"   : [  8, 5,   3,   4.58,  4   ]
+          "M10"  : [ 10, 6,   4,   5.72,  5   ]
+          "M12"  : [ 12, 8,   4.8, 6.86,  6   ]
+          "M14"  : [ 14, 9,   5.6, 6.86,  6   ]
+          "M16"  : [ 16, 10,  6.4, 9.15,  8   ]
+          "M20"  : [ 20, 14,  8,   11.43, 10  ]
+          "M24"  : [ 24, 16,  10,  13.72, 12  ]
+    source: http://www.fullermetric.com/products/socket/din915socket_set_screw_dog_point.aspx
+  - id: hexsocketsetscrewall
+    names:
+      name: Hex socket set screw
+      labeling: Hex socket set screw %(point)s point %(key)s %(l)s
+      description: Hexagon socket set screws
+    standards:
+      body: ANSI
+      standard: ANSI B18.3.6M
+      labeling: Hex socket set screw ANSI B18.3.6M %(point)s point %(key)s %(l)s
+      description: Hexagon socket set screws
+    parameters:
+      free: [key,l,point]
+      types:
+      types:
+        key: Table Index
+        l: Length (mm)
+        d: Length (mm)
+        d1: Length (mm)
+        t: Length (mm)
+        s: Length (mm)
+        e: Length (mm)
+        point: Table Index
+      defaults: {key: M10, l: 20, point: "flat"}
+      description:
+        key: Thread designation
+        l: total length
+        d: diameter
+        d1: maximum point diameter
+        t: socket depth
+        s: width across flats
+        e: width across edges
+        point: point type
+      tables:
+        index: key
+        columns: [d,t,e,s]
+        data:
+          "M3"   : [  3, 1.2, 1.73,  1.5 ]
+          "M4"   : [  4, 1.5, 2.3,   2   ]
+          "M5"   : [  5, 2,   2.87,  2.5 ]
+          "M6"   : [  6, 2,   3.44,  3   ]
+          "M8"   : [  8, 3,   4.58,  4   ]
+          "M10"  : [ 10, 4,   5.72,  5   ]
+          "M12"  : [ 12, 4.8, 6.86,  6   ]
+          "M16"  : [ 16, 6.4, 9.15,  8   ]
+          "M20"  : [ 20, 8,   11.43, 10  ]
+          "M24"  : [ 24, 10,  13.72, 12  ]
+      tables2d:
+        - rowindex: key
+          colindex: point
+          result: d1
+          columns: ["flat","cone","dog","cup"]
+          data:
+            "M3" : [ 2,   None, 2,   1.4]
+            "M4" : [ 2.5, None, 2.5, 1.5]
+            "M5" : [ 3.5, None, 3.5, 2  ]
+            "M6" : [ 4,   1.5,  4,   3  ]
+            "M8" : [ 5.5, 2,    5.5, 5  ]
+            "M10": [ 7,   2.5,  7,   6  ]
+            "M12": [ 8.5, 3,    8.5, 8  ]
+            "M16": [ 12,  None, 12,  10 ]
+            "M20": [ 15,  None, 15,  14 ]
+    source: http://www.fullermetric.com/products/socket/index.aspx, data is more or less the intersection of the data from DIN 913-916
+...

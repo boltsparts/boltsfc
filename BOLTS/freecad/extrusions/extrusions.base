@@ -1,0 +1,28 @@
+---
+- filename: profiles.py
+  author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+  license: CC0 1.0 <http://creativecommons.org/publicdomain/zero/1.0/>
+  type: function
+  functions:
+   - name: vslot20x20
+     classids: [vslot20x20]
+   - name: vslot20x40
+     classids: [vslot20x40]
+   - name: vslot20x60
+     classids: [vslot20x60]
+   - name: vslot20x80
+     classids: [vslot20x80]
+  source: created from scratch, dimensions from https://store-itwgldve.mybigcommerce.com//product_downloads/Open%20Source%20Downloads%20for%20Store/VSLOT%20Extrusion/VSLOT%20Extrusion_10.zip
+- filename: wheels.py
+  author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+  license: CC0 1.0 <http://creativecommons.org/publicdomain/zero/1.0/>
+  type: function
+  functions:
+    - name: dualvwheel
+      classids: [openbuildsdualvwheel]
+    - name: solidvwheel
+      classids: [openbuildssolidvwheel]
+    - name: minivwheel
+      classids: [openbuildssolidminivwheel]
+  source: created from scratch, dimensions from http://openbuildspartstore.com
+...

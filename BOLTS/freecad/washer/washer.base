@@ -1,0 +1,12 @@
+---
+- filename: washer.py
+  author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+  license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
+  type: function
+  functions:
+    - name: washer1
+      classids: [plainwasher1, plainwasher2, plainwasherforcheesehead, heavydutyplainwasher]
+    - name: washer2
+      classids: [plainwasherchamfered]
+...
+

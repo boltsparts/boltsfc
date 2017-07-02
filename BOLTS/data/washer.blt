@@ -1,0 +1,330 @@
+#BOLTS - Open Library of Technical Specifications
+#Copyright (C) 2013 Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+#
+#This library is free software; you can redistribute it and/or
+#modify it under the terms of the GNU Lesser General Public
+#License as published by the Free Software Foundation; either
+#version 2.1 of the License, or any later version.
+#
+#This library is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#Lesser General Public License for more details.
+#
+#You should have received a copy of the GNU Lesser General Public
+#License along with this library; if not, write to the Free Software
+#Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+---
+id: washer
+name: Washers
+description: Various standard washers
+author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
+blt-version: 0.4
+classes:
+  - id: plainwasher1
+    names:
+      name: Metric plain washer
+      labeling: Plain washer %(key)s
+      description: Plain washer, metric sizes
+    standards:
+      - body: ISO
+        standard: ISO 7089
+        labeling: Plain washer ISO 7089 %(key)s
+        description: Plain washer, metric sizes
+      - body: EN
+        standard: EN 7089
+        labeling: Plain washer EN 7089 %(key)s
+        description: Plain washer, metric sizes
+      - body: DINEN
+        standard: DINEN 27089
+        labeling: Plain washer DINEN 27089 %(key)s
+        description: Plain washer, metric sizes
+      - body: DINENISO
+        standard: DINENISO 7089
+        labeling: Plain washer DINENISO 7089 %(key)s
+        description: Plain washer, metric sizes
+      - body: DIN
+        standard: DIN 125 A
+        group: DIN 125
+        labeling: Plain washer DIN 125A %(key)s
+        description: Plain washer, metric sizes
+    parameters:
+        free: [key]
+        defaults: {key: "M3"}
+        types:
+          key: Table Index
+          d1: Length (mm)
+          d2: Length (mm)
+          s: Length (mm)
+        description:
+          key: Thread designation
+          d1: inner diameter
+          d2: outer diameter
+          s: thickness
+        tables:
+            &DIN125
+            index: key
+            columns: [d1,d2,s]
+            data:
+                #key   [  d1     d2    s     ]
+                M1:    [  1.1,   3,    0.3   ]
+                M1.2:  [  1.3,   3.5,  0.3   ]
+                M1.4:  [  1.5,   4,    0.3   ]
+                M1.6:  [  1.7,   4,    0.3   ]
+                M1.7:  [  1.8,   4.5,  0.3   ]
+                M2:    [  2.2,   5,    0.3   ]
+                M2.2:  [  2.4,   6,    0.5   ]
+                M2.3:  [  2.5,   6,    0.5   ]
+                M2.5:  [  2.7,   6,    0.5   ]
+                M2.6:  [  2.8,   7,    0.5   ]
+                M3:    [  3.2,   7,    0.5   ]
+                M3.5:  [  3.7,   8,    0.5   ]
+                M4:    [  4.3,   9,    0.8   ]
+                M5:    [  5.3,   10,   1     ]
+                M6:    [  6.4,   12,   1.6   ]
+                M7:    [  7.4,   14,   1.6   ]
+                M8:    [  8.4,   16,   1.6   ]
+                M10:   [  10,    20,   2     ]
+                M12:   [  13,    24,   2.5   ]
+                M14:   [  15,    28,   2.5   ]
+                M16:   [  17,    30,   3     ]
+                M18:   [  19,    34,   3     ]
+                M20:   [  21,    37,   3     ]
+                M22:   [  23,    39,   3     ]
+                M24:   [  25,    44,   4     ]
+                M27:   [  28,    50,   4     ]
+                M30:   [  31,    56,   4     ]
+                M33:   [  34,    60,   5     ]
+                M36:   [  37,    66,   5     ]
+                M39:   [  40,    72,   6     ]
+                M42:   [  43,    78,   7     ]
+                M45:   [  46,    85,   7     ]
+                M48:   [  50,    92,   8     ]
+                M52:   [  54,    98,   8     ]
+                M56:   [  58,    105,  9     ]
+                M60:   [  62,    110,  9     ]
+                M64:   [  64,    115,  9     ]
+                M68:   [  70,    120,  10    ]
+                M72:   [  74,    125,  10    ]
+                M76:   [  78,    135,  10    ]
+                M80:   [  82,    140,  12    ]
+                M85:   [  87,    145,  12    ]
+                M90:   [  93,    160,  12    ]
+                M100:  [  104,   175,  14    ]
+    source: http://almetal.nl/en/techinfo/wsh/wd125.htm
+  - id: plainwasherchamfered
+    names:
+      name: Metric plain washer with chamfer
+      labeling: Plain washer chamfered %(key)s
+      description: Plain washer with chamfer, metric sizes
+    standards:
+      - body: ISO
+        standard: ISO 7090
+        labeling: Plain washer chamfered ISO 7090 %(key)s
+        description: Plain washer with chamfer, metric sizes
+      - body: DINISO
+        standard: DIN ISO 7090
+        labeling: Plain washer chamfered DIN ISO 7090 %(key)s
+        description: Plain washer with chamfer, metric sizes
+      - body: DINENISO
+        standard: DIN EN ISO 7090
+        labeling: Plain washer chamfered DIN EN ISO 7090 %(key)s
+        description: Plain washer with chamfer, metric sizes
+      - body: DIN
+        standard: DIN 125 B
+        group: DIN 125
+        labeling: Plain washer chamfered DIN 125B %(key)s
+        description: Plain washer with chamfer, metric sizes
+    parameters:
+        free: [key]
+        defaults: {key: "M3"}
+        types:
+          key: Table Index
+          d1: Length (mm)
+          d2: Length (mm)
+          s: Length (mm)
+        description:
+          key: Thread designation
+          d1: inner diameter
+          d2: outer diameter
+          s: thickness
+        tables:
+            *DIN125
+    notes: Are there precise specifications about the chamfer?
+    source: http://almetal.nl/en/techinfo/wsh/wd125.htm
+  - id: plainwasher2
+    standards:
+      - body: ISO
+        standard: ISO 7091
+        labeling: Plain washer ISO 7091 %(key)s
+        description: Plain washer, metric sizes
+      - body: DINISO
+        standard: DIN ISO 7091
+        labeling: Plain washer DIN ISO 7091 %(key)s
+        description: Plain washer, metric sizes
+      - body: DINENISO
+        standard: DINENISO 7091
+        labeling: Plain washer DINENISO 7091 %(key)s
+        description: Plain washer, metric sizes
+      - body: DIN
+        standard: DIN 126
+        labeling: Plain washer DIN 126 %(key)s
+        description: Plain washer, metric sizes
+    parameters:
+        free: [key]
+        defaults: {key: "M10"}
+        types:
+          key: Table Index
+          d1: Length (mm)
+          d2: Length (mm)
+          s: Length (mm)
+        description:
+          key: Thread designation
+          d1: inner diameter
+          d2: outer diameter
+          s: thickness
+        tables:
+            index: key
+            columns: [d1,d2,s]
+            data:
+                #key   [  d1      d2      s     ]
+                M5:    [  5.5,    10.0,   1.0   ]
+                M6:    [  6.6,    12.0,   1.6   ]
+                M7:    [  7.6,    14.0,   1.6   ]
+                M8:    [  9.0,    16.0,   1.6   ]
+                M10:   [  11.0,   20.0,   2.0   ]
+                M12:   [  13.5,   24.0,   2.5   ]
+                M14:   [  15.5,   28.0,   2.5   ]
+                M16:   [  17.5,   30.0,   3.0   ]
+                M20:   [  22.0,   37.0,   3.0   ]
+                M22:   [  24.0,   39.0,   3.0   ]
+                M24:   [  26.0,   44.0,   4.0   ]
+                M27:   [  30.0,   50.0,   4.0   ]
+                M30:   [  33.0,   56.0,   4.0   ]
+                M33:   [  36.0,   60.0,   5.0   ]
+                M36:   [  39.0,   66.0,   5.0   ]
+                M39:   [  42.0,   72.0,   6.0   ]
+                M42:   [  45.0,   78.0,   7.0   ]
+                M45:   [  48.0,   85.0,   7.0   ]
+                M48:   [  52.0,   92.0,   8.0   ]
+                M52:   [  56.0,   98.0,   8.0   ]
+                M56:   [  62.0,   105.0,  9.0   ]
+                M60:   [  66.0,   110.0,  9.0   ]
+                M64:   [  70.0,   115.0,  9.0   ]
+                M72:   [  78.0,   125.0,  10.0  ]
+                M80:   [  86.0,   140.0,  12.0  ]
+                M90:   [  96.0,   160.0,  12.0  ]
+                M100:  [  107.0,  175.0,  14.0  ]
+    source: http://almetal.nl/en/techinfo/wsh/wd126.htm
+  - id: plainwasherforcheesehead
+    names:
+      name: Metric plain washer for cheese head screws
+      labeling: Plain washer for cheese head screws %(key)s
+      description: Plain washer for cheese head screws, metric sizes
+    standards:
+      - body: DIN
+        standard: DIN 433
+        labeling: Plain washer for cheese head screws DIN 433 %(key)s
+        description: Plain washer for cheese head screws
+      - body: ISO
+        standard: ISO 7092
+        labeling: Plain washer for cheese head screws ISO 7092 %(key)s
+        description: Plain washer for cheese head screws
+      - body: DINISO
+        standard: DIN ISO 7092
+        labeling: Plain washer for cheese head screws DIN ISO 7092 %(key)s
+        description: Plain washer for cheese head screws
+      - body: DINENISO
+        standard: DIN EN ISO 7092
+        labeling: Plain washer for cheese head screws DIN EN ISO 7092 %(key)s
+        description: Plain washer for cheese head screws
+    parameters:
+        free: [key]
+        defaults: {key: "M3"}
+        types:
+          key: Table Index
+          d1: Length (mm)
+          d2: Length (mm)
+          s: Length (mm)
+        description:
+          key: Thread designation
+          d1: inner diameter
+          d2: outer diameter
+          s: thickness
+        tables:
+            index: key
+            columns: [d1,d2,s]
+            data:
+                #key   [  d1      d2      s     ]
+                M1:    [  1.1,    2.5,    0.3   ]
+                M1.2:  [  1.3,    3.0,    0.3   ]
+                M1.4:  [  1.5,    3.0,    0.3   ]
+                M1.6:  [  1.7,    3.5,    0.3   ]
+                M1.7:  [  1.8,    4.0,    0.3   ]
+                M1.8:  [  1.9,    4.0,    0.3   ]
+                M2:    [  2.2,    4.5,    0.3   ]
+                M2.3:  [  2.5,    5.0,    0.5   ]
+                M2.5:  [  2.7,    5.0,    0.5   ]
+                M2.6:  [  2.8,    5.5,    0.5   ]
+                M3:    [  3.2,    6.0,    0.5   ]
+                M3.5:  [  3.7,    7.0,    0.5   ]
+                M4:    [  4.3,    8.0,    0.5   ]
+                M5:    [  5.3,    9.0,    1.0   ]
+                M6:    [  6.4,    11.0,   1.6   ]
+                M8:    [  8.4,    15.0,   1.6   ]
+                M10:   [  10.5,   18.0,   1.6   ]
+                M12:   [  13.0,   20.0,   2.0   ]
+                M14:   [  15.0,   24.0,   2.5   ]
+                M16:   [  17.0,   28.0,   2.5   ]
+                M18:   [  19.0,   30.0,   2.5   ]
+                M20:   [  21.0,   34.0,   3.0   ]
+                M24:   [  25.0,   39.0,   4.0   ]
+                M30:   [  31.0,   50.0,   4.0   ]
+                M36:   [  37.0,   60.0,   5.0   ]
+    source: http://almetal.nl/en/techinfo/wsh/wd433.htm
+    notes: unclear whether chamfered version exists
+  - id: heavydutyplainwasher
+    names:
+      name: Metric heavy duty plain washer
+      labeling: Heavy duty plain washer %(key)s
+      description: Heavy duty plain washer, metric sizes
+    standards:
+      body: DIN
+      standard: DIN 7349
+      labeling: Heavy duty plain washer DIN 7349 %(key)s
+      description: Heavy duty plain washer, metric sizes
+    parameters:
+        free: [key]
+        defaults: {key: "M10"}
+        types:
+          key: Table Index
+          d1: Length (mm)
+          d2: Length (mm)
+          s: Length (mm)
+        description:
+          key: Thread designation
+          d1: inner diameter
+          d2: outer diameter
+          s: thickness
+        tables:
+            index: key
+            columns: [d1,d2,s]
+            data:
+                #key   [  d1       d2       s     ]
+                M3:    [  3.2,     9,       1     ]
+                M4:    [  4.3,     12,      1.6   ]
+                M5:    [  5.3,     15,      2     ]
+                M6:    [  6.4,     17,      3     ]
+                M8:    [  8.4,     21,      4     ]
+                M10:   [  10.5,    25,      4     ]
+                M12:   [  13,      30,      6     ]
+                M14:   [  15,      36,      6     ]
+                M16:   [  17,      40,      6     ]
+                M18:   [  19,      44,      8     ]
+                M20:   [  21,      44,      8     ]
+                M22:   [  23,      50,      8     ]
+                M24:   [  25,      50,      10    ]
+                M27:   [  28,      60,      10    ]
+                M30:   [  31,      68,      10    ]
+    source: http://almetal.nl/en/techinfo/wsh/wd7349.htm
