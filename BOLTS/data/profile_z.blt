@@ -26,7 +26,7 @@ classes:
     names:
       name: ZNP Profile
       labeling: "%(type)s, l=%(l)s"
-      description: metric european standard equal-sided LNP profile
+      description: metric european standard ZNP profile
     standards:
       body: DIN
       standard: DIN 1027

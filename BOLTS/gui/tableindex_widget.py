@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/hugo/Documents/dev/bolts/BOLTS/output/freecad/BOLTS/gui/tableindex_widget.ui'
 #
-# Created: Sun Jul  2 20:20:15 2017
+# Created: Tue Jul  4 00:00:10 2017
 #      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!

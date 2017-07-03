@@ -189,8 +189,10 @@ class BoltsWidget(QBoltsWidget):
 			multinames = {}
 			multistds = {}
 
+			clasids = []
 			#names
 			for name,multiname in self.dbs["freecad"].iternames(['name','multiname'],filter_collection=coll):
+				clasids.append(self.repo.class_names.get_src(name).id)  # append classid
 				item = None
 				if multiname is None:
 					item = QtGui.QTreeWidgetItem(coll_item,[name.name.get_nice(), name.description])
@@ -204,14 +206,15 @@ class BoltsWidget(QBoltsWidget):
 			#single names
 			for std,multistd in self.dbs["freecad"].iterstandards(['standard','multistandard'],filter_collection = coll):
 				item = None
-				if multistd is None:
-					item = QtGui.QTreeWidgetItem(coll_item,[std.standard.get_nice(), std.description])
-				else:
-					if not multistd in multistds:
-						multistds[multistd] = QtGui.QTreeWidgetItem(coll_item,[multistd.standard.get_nice(),""])
-					item = QtGui.QTreeWidgetItem(multistds[multistd],[std.standard.get_nice(), std.description])
+				if self.repo.class_standards.get_src(std).id not in clasids:  # only add item if it is not in classids
+					if multistd is None:
+						item = QtGui.QTreeWidgetItem(coll_item,[std.standard.get_nice(), std.description])
+					else:
+						if not multistd in multistds:
+							multistds[multistd] = QtGui.QTreeWidgetItem(coll_item,[multistd.standard.get_nice(),""])
+						item = QtGui.QTreeWidgetItem(multistds[multistd],[std.standard.get_nice(), std.description])
 
-				item.setData(0,32,std)
+					item.setData(0,32,std)
 
 		multistds = {}
 

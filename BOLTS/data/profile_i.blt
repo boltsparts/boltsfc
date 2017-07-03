@@ -542,7 +542,7 @@ classes:
       standard: DIN 1025-1
       group: DIN 1025
       labeling: DIN1025-1 %(type)s, l=%(l)s
-      description: IPN profile, metric european standard i-beam profile
+      description: IPN profile, metric european standard i-beam profile (also called INP)
     parameters:
       free: [type, l]
       defaults: {type: "IPN100", l: 1000}

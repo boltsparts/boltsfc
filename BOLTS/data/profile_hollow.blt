@@ -22,11 +22,11 @@ author: [Bernd Hahnebach <bernd@bimstatik.org>, Johannes Reinhardt <jreinhardt@i
 license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
 blt-version: 0.4
 classes:
-  - id: generic_circle_hollow
+  - id: hollow_generic_circle
     names:
-      name: Circular hollow profile
-      labeling: "Circular hollow profile %(D)s/%(t)s l=%(l)s"
-      description: Generic circular hollow profile
+        name: Generic circular hollow profile
+        labeling: "Circular hollow profile %(D)s/%(t)s l=%(l)s"
+        description: A generic circular hollow profile to put in your own values
     parameters:
         free: [D,t,l]
         defaults: {D: 21.3, t: 2.3, l: 1000}
@@ -39,11 +39,11 @@ classes:
           t: thickness
           l: profile length
     source: No source information used
-  - id: generic_square_hollow
+  - id: hollow_generic_square
     names:
-      name: Square hollow profile
-      labeling: "Square hollow profile %(b)s/%(t)s l=%(l)s"
-      description: Generic square hollow profile
+        name: Generic square hollow profile
+        labeling: "Square hollow profile %(b)s/%(t)s l=%(l)s"
+        description: A generic square hollow profile to put in your own values
     parameters:
         free: [b,t,l]
         defaults: {b: 40, t: 2.6, l: 1000}
@@ -56,26 +56,30 @@ classes:
           t: web thickness
           l: profile length
     source: No source information used
-  - id: generic_rectangular_hollow
+  - id: hollow_generic_rectangular
     names:
-      name: Rectangular hollow profile
-      labeling: "Rectangular hollow profile %(h)s-%(b)s-%(t)s, l=%(l)s"
-      description: A generic rectangular hollow profile
+        name: Generic rectangular hollow
+        labeling: "Rectangular hollow profile %(h)s-%(b)s-%(t)s, l=%(l)s"
+        description: A generic rectangular hollow profile to put in your own values
     parameters:
-      free: [h, b, t, l]
-      defaults: {h: 100, b: 100, t: 6.3, l: 2500}
-      types:
+        free: [h, b, t, l]
+        defaults: {h: 100, b: 100, t: 6.3, l: 2500}
+        types:
           h: Length (mm)
           b: Length (mm)
           t: Length (mm)
           l: Length (mm)
-      description:
+        description:
           h: section height
           b: section width
           t: web thickness
           l: profile length
     source: No source information used
-  - id: circle_hollow
+  - id: hollow_circle
+    names:
+        name: Circular Hollow Section (CHS)
+        labeling: "%(type)s, l=%(l)s"
+        description: Hot finised structural circular hollow sections of non-alloy and fine grain steel
     standards:
       - body: DINEN
         standard: DIN EN 10210-2 circular
@@ -329,7 +333,11 @@ classes:
                 1219.0-25.0:   [  1219.0,  25.0 ]
     source: EN 10210-2:2006, Table B.1
     notes: http://en.wikipedia.org/wiki/Structural_steel
-  - id: square_hollow
+  - id: hollow_square
+    names:
+        name: Square Hollow Section (SHS)
+        labeling: "%(type)s, l=%(l)s"
+        description: Hot finised structural square hollow sections of non-alloy and fine grain steel
     standards:
       - body: DINEN
         standard: DIN EN 10210-2 square
@@ -469,7 +477,11 @@ classes:
                 400-20.0:   [  400,  20.0 ]
     source: EN 10210-2:2006, Table B.2
     notes: http://en.wikipedia.org/wiki/Structural_steel
-  - id: rectangular_hollow
+  - id: hollow_rectangular
+    names:
+        name: Rectangular Hollow Section (RHS)
+        labeling: "%(type)s, l=%(l)s"
+        description: Hot finised structural rectangular hollow sections of non-alloy and fine grain steel
     standards:
       - body: DINEN
         standard: DIN EN 10210-2 rectangular
