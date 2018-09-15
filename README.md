@@ -20,4 +20,9 @@ https://github.com/berndhahnebach/BOLTS/commits/boltsdev
 * the directory BOLTSFC (inside this there will be the BOLTS directory) will be copied to your FreeCAD Mod directory (just wait a bit, ATM there will be no info about successful installation)
 * go to the BOLTSFC directory and move the FreeCAD macro file to your FreeCAD Macro directory
 
+
+### Run BOLTS
+* run the Macro "start_bolts.FCMacro"
+* to be sure BOLTS was succressfully installed try to "import BOLTS" in the Python console
+
 bernd@bimstatik.org
