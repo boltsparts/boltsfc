@@ -391,7 +391,7 @@ class BoltsWidget(QBoltsWidget):
 			self.setup_props_name(data)
 			cl = self.repo.class_names.get_src(data)
 			base = self.dbs["freecad"].base_classes.get_src(cl)
-			print self.dbs["freecad"]
+			print(self.dbs["freecad"])
 			self.setup_param_widgets(cl,base)
 		elif isinstance(data,ClassStandard):
 			self.setup_props_standard(data)
