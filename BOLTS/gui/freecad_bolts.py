@@ -343,7 +343,7 @@ class BoltsWidget(QBoltsWidget):
 
 		lengths = {"Length (mm)" : "mm", "Length (in)" : "in"}
 
-		for key,tp in cl.parameters.types.iteritems():
+		for key,tp in cl.parameters.types.items():
 			if tp in lengths:
 				if params[key] is None:
 					#A undefined value is not necessarily fatal
