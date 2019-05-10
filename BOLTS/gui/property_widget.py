@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/hugo/Documents/dev/bolts/BOLTS/output/freecad/BOLTS/gui/property_widget.ui'
 #
-# Created: Tue Jul  4 21:30:03 2017
-#      by: PyQt4 UI code generator 4.11.2
+# Created by: PyQt4 UI code generator 4.12.1
 #
 # WARNING! All changes made in this file will be lost!
 

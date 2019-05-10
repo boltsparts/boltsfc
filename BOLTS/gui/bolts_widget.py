@@ -2,8 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/hugo/Documents/dev/bolts/BOLTS/output/freecad/BOLTS/gui/bolts_widget.ui'
 #
-# Created: Tue Jul  4 21:30:03 2017
-#      by: PyQt4 UI code generator 4.11.2
+# Created by: PyQt4 UI code generator 4.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -31,6 +30,7 @@ class Ui_BoltsWidget(object):
         self.content.setEnabled(True)
         self.content.setObjectName(_fromUtf8("content"))
         self.verticalLayout = QtGui.QVBoxLayout(self.content)
+        self.verticalLayout.setMargin(0)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.verticalLayout_2 = QtGui.QVBoxLayout()
         self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
