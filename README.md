@@ -4,7 +4,7 @@ installable FreeCAD package of BOLTS
 
 this package was made from of the following repository branch:
 
-https://github.com/berndhahnebach/BOLTS/commits/boltsdev
+https://github.com/boltsparts/BOLTS/commits/master
 
 
 ### Installation version 1:
