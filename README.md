@@ -1,8 +1,8 @@
 # BOLTSFC
 
-installable FreeCAD package of BOLTS
+Installable FreeCAD package of BOLTS
 
-this package was made from of the following repository branch:
+This package was made from of the following repository branch:
 
 https://github.com/boltsparts/BOLTS/commits/master
 
@@ -23,6 +23,6 @@ https://github.com/boltsparts/BOLTS/commits/master
 
 ### Run BOLTS
 * run the Macro "start_bolts.FCMacro"
-* to be sure BOLTS was succressfully installed try to "import BOLTS" in the Python console
+* to be sure BOLTS was successfully installed try to "import BOLTS" in the Python console
 
 bernd@bimstatik.org
