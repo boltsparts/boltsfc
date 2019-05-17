@@ -3,13 +3,13 @@
 ### Information
 * Installable FreeCAD package of BOLTS.
 * This package is generated from of the following repository branch:
-** https://github.com/boltsparts/BOLTS/commits/master
+    * https://github.com/boltsparts/BOLTS/commits/master
 
 
 ### Pull Requests
 * The pull requests made here can not be taken directly into the origin BOLTS repository.
 * It is recomended to make pull requets on the main repository (commit author etc will be kept than):
-** https://github.com/boltsparts/BOLTS/pulls
+    * https://github.com/boltsparts/BOLTS/pulls
 
 
 ### Installation by the FreeCAD Addon manager:
