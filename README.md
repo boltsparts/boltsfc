@@ -1,10 +1,15 @@
 # BOLTSFC
 
-installable FreeCAD package of BOLTS
+### Information
+* installable FreeCAD package of BOLTS
+* this package was made from of the following repository branch: https://github.com/boltsparts/BOLTS/commits/master
 
-this package was made from of the following repository branch:
 
-https://github.com/boltsparts/BOLTS/commits/master
+### Pull Requests
+* the pull requests made here can not be taken directly into the BOLTS repository
+* this package is generated from the origin BOLTS repository
+* it is recomended to make pull requets on the main repository (commit author etc will be kept than)
+* https://github.com/boltsparts/BOLTS/commits/master
 
 
 ### Installation version 1:
