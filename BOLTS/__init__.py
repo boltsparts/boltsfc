@@ -15,6 +15,7 @@
 #License along with this library; if not, write to the Free Software
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
+
 import FreeCAD, FreeCADGui, Part
 from os.path import join, exists, dirname
 from os import listdir
@@ -22,6 +23,7 @@ from .bolttools import blt
 from .bolttools import freecad
 
 USE_PYSIDE=True
+
 
 try:
 	from PySide import QtCore
@@ -42,10 +44,12 @@ from .gui import freecad_bolts as boltsgui
 
 #import repo
 rootpath =  dirname(__file__)
-repo = bolttools.blt.Repository(rootpath)
-freecad_db = bolttools.freecad.FreeCADData(repo)
+repo = blt.Repository(rootpath)
+print(repo)
+freecad_db = freecad.FreeCADData(repo)
 
 widget = None
+
 
 def show_widget():
 	global widget
@@ -56,6 +60,7 @@ def show_widget():
 		mw.addDockWidget(QtCore.Qt.RightDockWidgetArea, widget)
 	else:
 		widget.show()
+
 
 def make_drawing(scale,obj):
 	doc = FreeCAD.ActiveDocument
@@ -77,12 +82,14 @@ def make_drawing(scale,obj):
 		view.Scale = scale
 		page.addObject(view)
 
+
 def list_names(doc):
 	print("Label   Name")
 	print("------------")
 	for part in doc.findObjects():
 		if isinstance(part,Part.Feature):
 			print("%s    %s" % (part.Label, part.Name))
+
 
 def add_name(id,in_params=None):
 	name = repo.names[id]
@@ -98,6 +105,7 @@ def add_name(id,in_params=None):
 	coll = repo.collection_classes.get_src(cl)
 	boltsgui.add_part(coll,base,params,FreeCAD.ActiveDocument)
 
+
 def add_standard(id,in_params=None):
 	standard = repo.standards[id]
 	cl = repo.class_standards.get_src(standard)
@@ -112,6 +120,7 @@ def add_standard(id,in_params=None):
 	coll = repo.collection_classes.get_src(cl)
 	boltsgui.add_part(coll,base,params,FreeCAD.ActiveDocument)
 
+
 def get_free_in_params(cl):
 	base = freecad_db.base_classes.get_src(cl)
 	params = cl.parameters.union(base.parameters)
@@ -119,7 +128,7 @@ def get_free_in_params(cl):
 
 	in_params = {}
 	for p in free_params:
-		p_type = params.types[p]
+		# p_type = params.types[p]  # not used
 		default_value = params.defaults[p]
 		in_params[p] = default_value
 	return in_params
