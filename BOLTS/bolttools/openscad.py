@@ -56,7 +56,7 @@ class Connectors:
 			[])
 		self.name = cs["name"]
 		self.arguments = cs["arguments"]
-		if not "location" in self.arguments:
+		if "location" not in self.arguments:
 			raise MissingLocationError(self.arguments)
 		self.locations = cs["locations"]
 
@@ -84,10 +84,16 @@ class OpenSCADData(DataBase):
 			if not exists(basefilename):
 				#skip directory that is no collection
 				continue
-			base =  list(yaml.load_all(open(basefilename,"r","utf8")))
+			try:
+				base =  list(yaml.load_all( open(basefilename,"r","utf8"), Loader=yaml.SafeLoader))
+				# SafeLoader is not implemented in pyyaml < 5.1
+			except AttributeError:
+				# this is deprecated for newer pyyaml versions
+				base =  list(yaml.load_all(open(basefilename,"r","utf8")))
 			if len(base) != 1:
 				raise MalformedCollectionError(
-						"No YAML document found in file %s" % basefilename)
+					"No YAML document found in file %s" % basefilename
+				)
 			base = base[0]
 			for basefile in base:
 				scadfile = SCADFile(basefile,coll)
@@ -106,7 +112,7 @@ class OpenSCADData(DataBase):
 								self.module_connectors.add_link(module,connectors)
 
 							for id in module.classids:
-								if not id in repo.classes:
+								if id not in repo.classes:
 									raise MalformedBaseError(
 										"Unknown class %s" % id)
 								if self.module_classes.contains_dst(repo.classes[id]):
@@ -121,7 +127,7 @@ class OpenSCADData(DataBase):
 	def iternames(self,items=["name"],**kwargs):
 		"""
 		Iterator over all names of the repo.
-		
+
 		Possible items to request: name, multiname, collection, class, module
 		"""
 		check_iterator_arguments(items,"name",["multiname","collection","class","module"],kwargs)
@@ -137,7 +143,7 @@ class OpenSCADData(DataBase):
 	def iterstandards(self,items=["standard"],**kwargs):
 		"""
 		Iterator over all standards of the repo.
-		
+
 		Possible items to request: standard, multistandard, collection, class, module
 		"""
 		check_iterator_arguments(items,"standard",["multistandard","collection","class","module"],kwargs)
@@ -153,7 +159,7 @@ class OpenSCADData(DataBase):
 	def iterclasses(self,items=["class"],**kwargs):
 		"""
 		Iterator over all classes of the repo.
-		
+
 		Possible items to request: class, collection, scadfile, module
 		"""
 		check_iterator_arguments(items,"class",["collection","scadfile","module"],kwargs)

@@ -93,8 +93,13 @@ class DrawingsData(DataBase):
 			if coll not in repo.collections:
 				raise MalformedRepositoryError(
 					"Drawings for unknown collection found: %s " % coll)
-					
-			base_info =  list(yaml.load_all(open(basefilename,"r","utf8")))
+
+			try:
+				base_info =  list(yaml.load_all(open(basefilename,"r","utf8"), Loader=yaml.SafeLoader))
+				# SafeLoader is not implemented in pyyaml < 5.1
+			except AttributeError:
+				# this is deprecated for newer pyyaml versions
+				base_info =  list(yaml.load_all(open(basefilename,"r","utf8")))
 			if len(base_info) != 1:
 				raise MalformedCollectionError(
 					"Not exactly one YAML document found in file %s" % basefilename)
@@ -118,7 +123,7 @@ class DrawingsData(DataBase):
 					if draw.get_svg() is None and draw.get_png() is None:
 						raise MalformedRepositoryError("No drawing files present for %s/%s" % (coll,draw.filename))
 
-					if not draw.location in self.conlocations:
+					if draw.location not in self.conlocations:
 						self.conlocations.append(draw.location)
 					self.conlocations_condrawings.add_link(draw.location,draw)
 
@@ -130,7 +135,7 @@ class DrawingsData(DataBase):
 	def iterclasses(self,items=["class"],**kwargs):
 		"""
 		Iterator over all classes of the repo.
-		
+
 		Possible items to request: class, collection, dimdrawing, condrawings
 		"""
 		check_iterator_arguments(items,"class",["collection","dimdrawing","condrawings"],kwargs)
@@ -152,7 +157,7 @@ class DrawingsData(DataBase):
 	def iterdimdrawings(self,items=["dimdrawing"],**kwargs):
 		"""
 		Iterator over all dimension drawings of the repo.
-		
+
 		Possible items to request: dimdrawing, classes, collection
 		"""
 		check_iterator_arguments(items,"dimdrawing",["classes", "collection"],kwargs)
@@ -168,7 +173,7 @@ class DrawingsData(DataBase):
 	def itercondrawings(self,items=["condrawing"],**kwargs):
 		"""
 		Iterator over all connector drawings of the repo.
-		
+
 		Possible items to request: condrawing, conlocations, classes, collection
 		"""
 		check_iterator_arguments(items,"condrawing",["conlocations", "classes", "collection"],kwargs)

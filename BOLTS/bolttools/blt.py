@@ -250,11 +250,11 @@ class Repository:
 				continue
 			try:
 				raw_coll = list(yaml.load_all(
-					open(join(path,"data",filename),"r","utf8"), Loader=yaml.FullLoader
+					open(join(path,"data",filename),"r","utf8"), Loader=yaml.SafeLoader
 				))
-				# FullLoader is not implemented in pyyaml < 5.1
+				# SafeLoader is not implemented in pyyaml < 5.1
 			except AttributeError:
-				# this is depracated for newer pyyaml versions
+				# this is deprecated for newer pyyaml versions
 				raw_coll = list(yaml.load_all(open(join(path,"data",filename),"r","utf8")))
 			if len(raw_coll) == 0:
 				raise MalformedCollectionError(
@@ -275,7 +275,7 @@ class Repository:
 				raise MalformedCollectionError(
 					"Collection ID is not identical with file name: %s" % filename)
 			for c in raw_coll["id"]:
-				if not c in string.ascii_letters +  string.digits + "_":
+				if c not in string.ascii_letters +  string.digits + "_":
 					raise MalformedCollectionError(
 						"Collection ID contains invalid character: %s" % c)
 
@@ -334,7 +334,7 @@ class Repository:
 
 					multinameid = name.group.get_safe()
 					if multinameid:
-						if not multinameid in self.multinames:
+						if multinameid not in self.multinames:
 							multiname = MultiName(name.group)
 							self.multinames[multinameid] = multiname
 						else:
@@ -369,7 +369,7 @@ class Repository:
 
 					multistdid = standard.group.get_safe()
 					if multistdid:
-						if not multistdid in self.multistandards:
+						if multistdid not in self.multistandards:
 							multistd = MultiStandard(standard.group)
 							self.multistandards[multistdid] = multistd
 							self.body_multistandards.add_link(body,multistd)
@@ -380,17 +380,18 @@ class Repository:
 						self.multistandard_standards.add_link(multistd,standard)
 
 		for standard in self.standards.values():
-			if not standard.replaces is None:
-				if not standard.replaces in self.standards:
+			if standard.replaces is not None:
+				if standard.replaces not in self.standards:
 					raise MalformedRepositoryError(
 						"Unknown replace field %s in standard %s" %
-							(standard.replaces,standard.get_id()))
+						(standard.replaces,standard.get_id())
+					)
 				self.standard_replaced.add_link(standard,self.standards[standard.replaces])
 
 	def iternames(self,items=["name"],**kwargs):
 		"""
 		Iterator over all names of the repo.
-		
+
 		Possible items to request: name, multiname, collection, class
 		"""
 		check_iterator_arguments(items,"name",["multiname","collection","class"],kwargs)
@@ -433,7 +434,7 @@ class Repository:
 	def iterstandards(self,items=["standard"],**kwargs):
 		"""
 		Iterator over all standards of the repo.
-		
+
 		Possible items to request: standard, multistandard, body, collection, class
 		"""
 		check_iterator_arguments(items,"standard",["multistandard","body","collection","class"],kwargs)
@@ -479,7 +480,7 @@ class Repository:
 	def iterclasses(self,items=["class"],**kwargs):
 		"""
 		Iterator over all classes of the repo.
-		
+
 		Possible items to request: class, collection
 		"""
 		check_iterator_arguments(items,"class",["collection"],kwargs)
@@ -493,7 +494,7 @@ class Repository:
 	def itercollections(self):
 		"""
 		Iterator over all collections of the repo.
-		
+
 		Not possible to request items
 		"""
 		'''
@@ -507,7 +508,7 @@ class Repository:
 	def iterbodies(self):
 		"""
 		Iterator over all standard bodies of the repo.
-		
+
 		Not possible to request items
 		"""
 		'''

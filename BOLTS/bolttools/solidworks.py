@@ -33,7 +33,7 @@ class DesignTableClass:
 		)
 
 		self.classid = cl["classid"]
-		
+
 		self.naming = Substitution(cl.get("naming",None))
 
 
@@ -75,19 +75,19 @@ class SolidWorksData(DataBase):
 			if not exists(basefilename):
 				#skip directory that is no collection
 				continue
-			base =  list(yaml.load_all(open(basefilename,"r","utf8")))
+			try:
+				base =  list(yaml.load_all(open(basefilename,"r","utf8"), Loader=yaml.SafeLoader))
+				# SafeLoader is not implemented in pyyaml < 5.1
+			except AttributeError:
+				# this is deprecated for newer pyyaml versions
+				base =  list(yaml.load_all(open(basefilename,"r","utf8")))
 			if len(base) != 1:
 				raise MalformedCollectionError(
-						"No YAML document found in file %s" % basefilename)
+					"No YAML document found in file %s" % basefilename
+				)
 			base = base[0]
 
 			for designtable in base:
 				if not designtable["type"] == "solidworks":
 					continue
 				self.designtables.append(DesignTable(designtable,coll,self.backend_root))
-
-
-
-
-
-

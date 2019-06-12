@@ -65,14 +65,15 @@ class FreeCADData(DataBase):
 				#skip directory that is no collection
 				continue
 			try:
-				base_info =  list(yaml.load_all(open(basefilename,"r","utf8"), Loader=yaml.FullLoader))
-				# FullLoader is not implemented in pyyaml < 5.1
+				base_info =  list(yaml.load_all(open(basefilename,"r","utf8"), Loader=yaml.SafeLoader))
+				# SafeLoader is not implemented in pyyaml < 5.1
 			except AttributeError:
-				# this is depracated for newer pyyaml versions
+				# this is deprecated for newer pyyaml versions
 				base_info =  list(yaml.load_all(open(basefilename,"r","utf8")))
 			if len(base_info) != 1:
 				raise MalformedCollectionError(
-						"Not exactly one YAML document found in file %s" % basefilename)
+					"Not exactly one YAML document found in file %s" % basefilename
+				)
 			base_info = base_info[0]
 			for basefile in base_info:
 				if basefile["type"] == "function":
@@ -85,7 +86,7 @@ class FreeCADData(DataBase):
 							self.bases.append(function)
 							self.collection_bases.add_link(repo.collections[coll],function)
 							for id in func["classids"]:
-								if not id in repo.classes:
+								if id not in repo.classes:
 									raise MalformedBaseError(
 										"Unknown class %s" % id)
 								if self.base_classes.contains_dst(repo.classes[id]):
@@ -101,7 +102,7 @@ class FreeCADData(DataBase):
 	def iterclasses(self,items=["class"],**kwargs):
 		"""
 		Iterator over all classes of the repo.
-		
+
 		Possible items to request: class, collection, base
 		"""
 		check_iterator_arguments(items,"class",["collection","base"],kwargs)
@@ -149,7 +150,7 @@ class FreeCADData(DataBase):
 	def iterbases(self,items=["base"],**kwargs):
 		"""
 		Iterator over all freecad bases of the repo.
-		
+
 		Possible items to request: base, classes, collection
 		"""
 		check_iterator_arguments(items,"base",["classes", "collection"],kwargs)
