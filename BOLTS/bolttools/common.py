@@ -77,6 +77,7 @@ def filter_iterator_items(its,kwargs):
 				raise ValueError("Strange filter argument: %s" % kwargs[fil])
 	return True
 
+
 ALL_TYPES = ["Length (mm)", "Length (in)", "Number", "Bool", "Table Index", "String","Angle (deg)"]
 UNITS = {"Length (mm)" : "mm", "Length (in)" : "in", "Angle (deg)" : "deg"}
 
@@ -301,6 +302,7 @@ class Lexicographical(Sorting):
 		return True
 	def sort(self,choices):
 		return sorted(choices)
+
 
 SORTINGS = [Numerical(), Lexicographical()]
 
@@ -670,7 +672,6 @@ class NamePair:
 		return self.safe != other.safe or self.nice != other.nice
 
 
-
 class Identifier(NamePair):
 	"""Python class for identifying a BOLTS class"""
 	def __init__(self,ident):
@@ -703,7 +704,6 @@ class Identifier(NamePair):
 				else:
 					res = res.replace(c,'')
 		return res
-
 
 
 class Substitution(NamePair):

@@ -16,13 +16,15 @@
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 
-import FreeCAD, FreeCADGui, Part
+import FreeCAD
+import FreeCADGui
+import Part
 from os.path import join, exists, dirname
 from os import listdir
 from .bolttools import blt
 from .bolttools import freecad
 
-USE_PYSIDE=True
+USE_PYSIDE = True
 
 
 try:
@@ -30,7 +32,7 @@ try:
 	from FreeCADGui import getMainWindow
 except ImportError:
 	from PyQt4 import QtCore, QtGui
-	USE_PYSIDE=False
+	USE_PYSIDE = False
 
 	def getMainWindow():
 		"returns the main window"
@@ -43,7 +45,7 @@ from .gui import freecad_bolts as boltsgui
 
 
 #import repo
-rootpath =  dirname(__file__)
+rootpath = dirname(__file__)
 repo = blt.Repository(rootpath)
 print(repo)
 freecad_db = freecad.FreeCADData(repo)

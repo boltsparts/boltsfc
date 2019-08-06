@@ -19,9 +19,7 @@
 import math
 
 import Part
-import Arch
 from FreeCAD import Vector
-from Part import makeCircle, makeLine
 from DraftGeomUtils import fillet as draft_fillet
 
 
@@ -342,7 +340,7 @@ def tslot20x20_two_slot_opp(
 		(0,0,True, False,False,True),
 	]
 
-	vertices = [tslot_outline] + 2*[tslot_closed] + 2*[tslot_outline]+ 2*[tslot_closed] + [tslot_outline]
+	vertices = [tslot_outline] + 2*[tslot_closed] + 2*[tslot_outline] + 2*[tslot_closed] + [tslot_outline]
 	fillets = [5,7,19,21]
 
 	closed_symmetry = [
@@ -478,7 +476,7 @@ def assemble(
 			vcur[0] = mir_x*vcur[0]+o_x+offset[0]
 			vcur[1] = mir_y*vcur[1]+o_y+offset[1]
 
-			lines.append(makeLine(vlast,vcur))
+			lines.append(Part.makeLine(vlast,vcur))
 	return lines
 
 
@@ -634,7 +632,6 @@ def tslot(
 		holes.append(Part.Wire(assemble([sym],[vert])))
 		if not sym[5]:
 			holes[-1].reverse()
-
 
 	#circular holes
 	for offset in circle_offsets:

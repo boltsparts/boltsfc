@@ -266,7 +266,7 @@ class Repository:
 			raw_coll = raw_coll[0]
 
 			if not isinstance(raw_coll["classes"],list):
-				raise MalformedCollectionError("No class in collection %s"% raw_coll["id"])
+				raise MalformedCollectionError("No class in collection %s" % raw_coll["id"])
 
 			if raw_coll["id"] in self.collections:
 				raise MalformedCollectionError("Duplicate collection id %s" % raw_coll["id"])
@@ -275,7 +275,7 @@ class Repository:
 				raise MalformedCollectionError(
 					"Collection ID is not identical with file name: %s" % filename)
 			for c in raw_coll["id"]:
-				if c not in string.ascii_letters +  string.digits + "_":
+				if c not in string.ascii_letters + string.digits + "_":
 					raise MalformedCollectionError(
 						"Collection ID contains invalid character: %s" % c)
 
@@ -405,7 +405,7 @@ class Repository:
 
 			its = {"name" : name}
 			its["class"] = self.class_names.get_src(name)
-			if  self.multiname_names.contains_dst(name):
+			if self.multiname_names.contains_dst(name):
 				its["multiname"] = self.multiname_names.get_src(name)
 				its["collection"] = self.collection_multinames.get_src(multiname)
 			else:
@@ -450,7 +450,7 @@ class Repository:
 			its["class"] = self.class_standards.get_src(std)
 			its["body"] = self.body_standards.get_src(std)
 
-			if  self.multistandard_standards.contains_dst(std):
+			if self.multistandard_standards.contains_dst(std):
 				its["multistandard"] = self.multistandard_standards.get_src(std)
 				its["collection"] = self.collection_multistandards.get_src(its["multistandard"])
 			else:

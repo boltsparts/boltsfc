@@ -19,7 +19,8 @@ from os.path import dirname, join
 bolts_path = dirname(__file__)
 from BOLTS import USE_PYSIDE
 
-import FreeCAD, FreeCADGui
+import FreeCAD
+import FreeCADGui
 
 if USE_PYSIDE:
 	from PySide import QtCore, QtGui
@@ -53,7 +54,8 @@ else:
 	def unpack(x):
 		return x.toPyObject()
 
-import Part, Sketcher
+import Part
+import Sketcher
 import sys
 from os import listdir
 from BOLTS.bolttools import blt
@@ -67,7 +69,7 @@ def add_part(collection, base,params,doc):
 			(collection.id,base.module_name))
 		module.__dict__[base.name](params,doc)
 	else:
-		raise  RuntimeError("Unknown base geometry type: %s" % type(base))
+		raise RuntimeError("Unknown base geometry type: %s" % type(base))
 
 #custom widgets
 
