@@ -16,11 +16,10 @@
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 
+import Part
+import Arch
 from FreeCAD import Vector
 from Part import makeCircle, makeLine
-import Part, Arch
-from math import sin,cos,fabs
-import math
 from DraftGeomUtils import fillet as draft_fillet
 
 
@@ -30,11 +29,9 @@ def ibeam_parallel_flange(params,document):
         b = params['b']
         tf = params['tf']
         tw = params['tw']
-        r = params ['r']
+        r = params['r']
         l = params['l']
         name = params['name']
-
-
 
         # lower flange, starting at the left web fillet, going counter-clockwise
         Vlf1 = Vector((-tw/2-r),(-h/2+tf),0)
@@ -85,7 +82,6 @@ def ibeam_parallel_flange(params,document):
         W = Part.Wire([Llf1,Llf2,Llf3,Llf4,Llf5,Cfc1,Lw1,Cfc2,Luf1,Luf2,Luf3,Luf4,Luf5,Cfc3,Lw2,Cfc4])
         F = Part.Face(W)
 
-
         if params['arch']:
                 part = Arch.makeStructure(name=name)
 
@@ -102,17 +98,16 @@ def ibeam_parallel_flange(params,document):
                 part.Shape = beam
 
 
-
 def ibeam_angled_flange(params,document):
     h = params['h']
     b = params['b']
     # tf = params['tf']  # not used
     tw = params['tw']
-    # hw = params ['hw']  # not use
-    f = params ['f']
-    g = params ['g']
-    r1 = params ['r1']
-    r2 = params ['r2']
+    # hw = params['hw']  # not use
+    f = params['f']
+    g = params['g']
+    r1 = params['r1']
+    r2 = params['r2']
     l = params['l']
     name = params['name']
 

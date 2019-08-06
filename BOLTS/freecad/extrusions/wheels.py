@@ -16,9 +16,9 @@
 #Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 
+import Part
 from FreeCAD import Vector
-from Part import makeCircle, makeLine
-import Part, Arch
+from Part import makeLine
 
 
 def dualvwheel(params,document):
@@ -62,7 +62,6 @@ def dualvwheel(params,document):
 		vcur = Vector(vertices[i])
 		vcur[0] *= -1
 		lines.append(makeLine(vcur,vlast))
-
 
 	part = document.addObject("Part::Feature","BOLTS_part")
 	part.Label = name
@@ -109,7 +108,6 @@ def solidvwheel(params,document):
 		vcur[0] *= -1
 		lines.append(makeLine(vcur,vlast))
 
-
 	part = document.addObject("Part::Feature","BOLTS_part")
 	part.Label = name
 
@@ -154,7 +152,6 @@ def minivwheel(params,document):
 		vcur = Vector(vertices[i])
 		vcur[0] *= -1
 		lines.append(makeLine(vcur,vlast))
-
 
 	part = document.addObject("Part::Feature","BOLTS_part")
 	part.Label = name

@@ -18,7 +18,8 @@
 
 from FreeCAD import Vector
 from Part import makeCircle, makeLine
-import Part, Arch
+import Part
+import Arch
 
 def cbeam_parallel_flange(params,document):
         # key = params['type']  # not used
@@ -26,7 +27,7 @@ def cbeam_parallel_flange(params,document):
         b = params['b']
         tf = params['tf']
         tw = params['tw']
-        r = params ['r']
+        r = params['r']
         l = params['l']
         name = params['name']
 
