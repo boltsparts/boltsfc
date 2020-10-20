@@ -31,6 +31,8 @@
 
 
 ### For developer
-* LGTM: https://lgtm.com/projects/g/boltsparts/BOLTSF
+* LGTM: https://lgtm.com/projects/g/boltsparts/BOLTSFC
+
+
 
 bernd@bimstatik.org
