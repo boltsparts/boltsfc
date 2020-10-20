@@ -30,4 +30,7 @@
 * To be sure BOLTS was succressfully installed try to "import BOLTS" in the Python console.
 
 
+### For developer
+* LGTM: https://lgtm.com/projects/g/boltsparts/BOLTSF
+
 bernd@bimstatik.org
