@@ -1,5 +1,6 @@
 # BOLTS - Open Library of Technical Specifications
 # Copyright (C) 2013 Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
+# Copyright (C) 2021 Bernd Hahnebach <bernd@bimstatik.org>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,65 +17,32 @@
 
 import importlib
 import sys
-from os.path import dirname, join
+from os.path import dirname
+from os.path import join
+
+from PySide import QtCore
+from PySide import QtGui
+from PySide.QtCore import Slot
 
 import FreeCAD
 import FreeCADGui
+from FreeCADGui import PySideUic as uic
 
 from ..bolttools import freecad
 from ..bolttools.blt import Collection
 from ..bolttools.blt import ClassName
 from ..bolttools.blt import ClassStandard
 
-from .. import USE_PYSIDE
-if USE_PYSIDE:
-    from PySide import QtCore
-    from PySide import QtGui
-    from FreeCADGui import PySideUic as uic
 
-    try:
-        bolts_path = dirname(__file__)
-        Ui_BoltsWidget, QBoltsWidget = uic.loadUiType(
-            join(bolts_path, 'bolts_widget.ui')
-        )
-        Ui_ValueWidget, QValueWidget = uic.loadUiType(
-            join(bolts_path, 'value_widget.ui')
-        )
-        Ui_BoolWidget, QBoolWidget = uic.loadUiType(
-            join(bolts_path, 'bool_widget.ui')
-        )
-        Ui_TableIndexWidget, QTableIndexWidget = uic.loadUiType(
-            join(bolts_path, 'tableindex_widget.ui')
-        )
-        Ui_PropertyWidget, QPropertyWidget = uic.loadUiType(
-            join(bolts_path, 'property_widget.ui')
-        )
-    except ImportError:
-        FreeCAD.Console.PrintError(
-            "uic import failed. Make sure that the pyside tools are installed"
-        )
-        raise
-    from PySide.QtCore import Slot
+# load the uis
+bolts_path = dirname(__file__)
+Ui_BoltsWidget, QBoltsWidget = uic.loadUiType(
+    join(bolts_path, "bolts_widget.ui")
+)
 
-    def unpack(x):
-        return x
-else:
-    from PyQt5 import QtGui
-    from PyQt5 import QtCore
-    from bolts_widget import Ui_BoltsWidget
-    from PyQt5.QtGui import QDockWidget as QBoltsWidget
-    from value_widget import Ui_ValueWidget
-    from PyQt5.QtGui import QWidget as QValueWidget
-    from bool_widget import Ui_BoolWidget
-    from PyQt5.QtGui import QWidget as QBoolWidget
-    from tableindex_widget import Ui_TableIndexWidget
-    from PyQt5.QtGui import QWidget as QTableIndexWidget
-    from property_widget import Ui_PropertyWidget
-    from PyQt5.QtGui import QWidget as QPropertyWidget
-    from PyQt5.QtCore import pyqtSlot as Slot
 
-    def unpack(x):
-        return x.toPyObject()
+def unpack(x):
+    return x
 
 
 def add_part(collection, base, params, doc):
@@ -100,21 +68,22 @@ def add_part(collection, base, params, doc):
 # custom widgets
 
 
-class PropertyWidget(QPropertyWidget):
+class PropertyWidget(QtGui.QWidget):
     def __init__(self, parent, prop, value):
-        QPropertyWidget.__init__(self, parent)
-        self.ui = Ui_PropertyWidget()
-        self.ui.setupUi(self)
+        super(PropertyWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "property_widget.ui"))
         self.ui.prop.setTextFormat(QtCore.Qt.RichText)
         self.ui.prop.setText("<b>%s:</b>" % prop)
         self.ui.value.setText(value)
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
 
 
-class LengthWidget(QValueWidget):
+class LengthWidget(QtGui.QWidget):
     def __init__(self, parent, label, default):
-        QValueWidget.__init__(self, parent)
-        self.ui = Ui_ValueWidget()
-        self.ui.setupUi(self)
+        super(LengthWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "value_widget.ui"))
         self.ui.label.setText(label)
         self.ui.valueEdit.setText(default)
 
@@ -122,31 +91,36 @@ class LengthWidget(QValueWidget):
             0, sys.float_info.max, 4, self
         )
         self.ui.valueEdit.setValidator(self.validator)
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
 
     def getValue(self):
         return float(self.ui.valueEdit.text())
 
 
-class NumberWidget(QValueWidget):
+class NumberWidget(QtGui.QWidget):
     def __init__(self, parent, label, default):
-        QValueWidget.__init__(self, parent)
-        self.ui = Ui_ValueWidget()
-        self.ui.setupUi(self)
+        super(NumberWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "value_widget.ui"))
         self.ui.label.setText(label)
         self.ui.valueEdit.setText(default)
 
         self.validator = QtGui.QDoubleValidator(self)
         self.ui.valueEdit.setValidator(self.validator)
 
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
+
     def getValue(self):
         return float(self.ui.valueEdit.text())
 
 
-class AngleWidget(QValueWidget):
+class AngleWidget(QtGui.QWidget):
     def __init__(self, parent, label, default):
-        QValueWidget.__init__(self, parent)
-        self.ui = Ui_ValueWidget()
-        self.ui.setupUi(self)
+        super(AngleWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "value_widget.ui"))
         self.ui.label.setText(label)
         self.ui.valueEdit.setText(default)
 
@@ -154,48 +128,58 @@ class AngleWidget(QValueWidget):
         self.validator.setRange(-360., 360., 2)
         self.ui.valueEdit.setValidator(self.validator)
 
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
     def getValue(self):
         return float(self.ui.valueEdit.text())
 
 
-class StringWidget(QValueWidget):
+class StringWidget(QtGui.QWidget):
     def __init__(self, parent, label, default):
-        QValueWidget.__init__(self, parent)
-        self.ui = Ui_ValueWidget()
-        self.ui.setupUi(self)
+        super(StringWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "value_widget.ui"))
         self.ui.label.setText(label)
         self.ui.valueEdit.setText(default)
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
 
     def getValue(self):
         return self.ui.valueEdit.text()
 
 
-class BoolWidget(QBoolWidget):
+class BoolWidget(QtGui.QWidget):
     def __init__(self, parent, label, default):
-        QBoolWidget.__init__(self, parent)
-        self.ui = Ui_BoolWidget()
-        self.ui.setupUi(self)
+        super(BoolWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "bool_widget.ui"))
         self.ui.checkBox.setText(label)
         if default == "True":
             self.ui.checkBox.setChecked(True)
         else:
             self.ui.checkBox.setChecked(False)
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
 
     def getValue(self):
         return self.ui.checkBox.isChecked()
 
 
-class TableIndexWidget(QTableIndexWidget):
+class TableIndexWidget(QtGui.QWidget):
     def __init__(self, parent, label, keys, default):
-        QTableIndexWidget.__init__(self, parent)
-        self.ui = Ui_TableIndexWidget()
-        self.ui.setupUi(self)
+        super(TableIndexWidget, self).__init__()
+        self.ui = uic.loadUi(join(bolts_path, "tableindex_widget.ui"))
         self.ui.label.setText(label)
 
         for key, i in zip(keys, range(len(keys))):
             self.ui.comboBox.addItem(key)
             if key == default:
                 self.ui.comboBox.setCurrentIndex(i)
+
+        layout = QtGui.QHBoxLayout()
+        layout.addWidget(self.ui)
+        self.setLayout(layout)
 
     def getValue(self):
         return str(self.ui.comboBox.currentText())
@@ -216,12 +200,12 @@ class BoltsWidget(QBoltsWidget):
 
         self.coll_root = QtGui.QTreeWidgetItem(
             self.ui.partsTree,
-            ['Collections', 'Ordered by collections']
+            ["Collections", "Ordered by collections"]
         )
         self.coll_root.setData(0, 32, None)
         self.std_root = QtGui.QTreeWidgetItem(
             self.ui.partsTree,
-            ['Standard', 'Ordered by issuing body']
+            ["Standard", "Ordered by issuing body"]
         )
         self.std_root.setData(0, 32, None)
 
@@ -239,7 +223,7 @@ class BoltsWidget(QBoltsWidget):
             clasids = []
             # names
             for name, multiname in self.dbs["freecad"].iternames(
-                ['name', 'multiname'], filter_collection=coll
+                ["name", "multiname"], filter_collection=coll
             ):
                 # append classid
                 clasids.append(self.repo.class_names.get_src(name).id)
@@ -264,7 +248,7 @@ class BoltsWidget(QBoltsWidget):
 
             # single names
             for std, multistd in self.dbs["freecad"].iterstandards(
-                ['standard', 'multistandard'], filter_collection=coll
+                ["standard", "multistandard"], filter_collection=coll
             ):
                 item = None
                 # only add item if it is not in classids
@@ -298,7 +282,7 @@ class BoltsWidget(QBoltsWidget):
             std_item.setData(0, 32, None)
             # single standards
             for std, multistd in self.dbs["freecad"].iterstandards(
-                ['standard', 'multistandard'], filter_body=body
+                ["standard", "multistandard"], filter_body=body
             ):
                 if multistd is None:
                     item = QtGui.QTreeWidgetItem(
@@ -477,7 +461,7 @@ class BoltsWidget(QBoltsWidget):
             params[key] = self.param_widgets[key].getValue()
         params = cl.parameters.collect(params)
 
-        params['name'] = data.labeling.get_nice(params)
+        params["name"] = data.labeling.get_nice(params)
 
         lengths = {"Length (mm)": "mm", "Length (in)": "in"}
 
