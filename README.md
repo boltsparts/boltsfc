@@ -29,10 +29,10 @@
 * by FreeCAD Gui:
     * Run the Macro "start_bolts.FCMacro".
 * by Python in FreeCAD Python console
-´´´
+```
 import BOLTS
 BOLTS.show_widget()
-´´´
+```
 
 
 ### For developer
