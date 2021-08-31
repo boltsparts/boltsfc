@@ -26,8 +26,13 @@
 
 
 ### Start BOLTS
-* Run the Macro "start_bolts.FCMacro".
-* To be sure BOLTS was succressfully installed try to "import BOLTS" in the Python console.
+* by FreeCAD Gui:
+    * Run the Macro "start_bolts.FCMacro".
+* by Python in FreeCAD Python console
+'''
+import BOLTS
+BOLTS.show_widget()
+'''
 
 
 ### For developer
