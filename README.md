@@ -22,7 +22,7 @@
 * Download FreeCAD macro file "start_bolts.FCMacro" and the BOLTS directory .
 * Place both in your FreeCAD Macro directory.
 * For more information refere to the webpage
-** https://www.bolts-library.org/en/docs/0.3/document/freecad/installation.html
+    * https://www.bolts-library.org/en/docs/0.3/document/freecad/installation.html
 
 
 ### Start BOLTS
