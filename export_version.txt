@@ -1,0 +1,11 @@
+backend was exported on 2022-11-06 18:07:12.691737
+
+information last commit of boltsparts repo:
+
+2fef9cca89f9
+2022-11-06 08:51:32
+Bernd Hahnebach
+
+Merge pull request #2 from Andrej730/patch-1
+
+Removed pkg-resources from requirements.txt
