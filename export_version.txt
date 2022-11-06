@@ -1,11 +1,10 @@
-backend was exported on 2022-11-06 18:07:12.691737
+backend was exported on 2022-11-06 22:03:19.428340
 
 information last commit of boltsparts repo:
 
-2fef9cca89f9
-2022-11-06 08:51:32
+cf748acf77ea
+2022-11-06 21:59:57
 Bernd Hahnebach
 
-Merge pull request #2 from Andrej730/patch-1
+data: add ri and ro to european rectangular and square hollow profiles
 
-Removed pkg-resources from requirements.txt
