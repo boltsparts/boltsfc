@@ -1,10 +1,10 @@
-backend was exported on 2022-11-06 22:03:19.428340
+backend was exported on 2022-11-07 23:49:19.988688
 
 information last commit of boltsparts repo:
 
-cf748acf77ea
-2022-11-06 21:59:57
+dcadedc5ea43
+2022-11-07 23:47:58
 Bernd Hahnebach
 
-data: add ri and ro to european rectangular and square hollow profiles
+backend freecad, add method to create ibeam without fillets
 
