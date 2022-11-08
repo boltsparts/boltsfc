@@ -1,10 +1,11 @@
-backend was exported on 2022-11-07 23:49:19.988688
+backend was exported on 2022-11-08 15:30:18.434808
 
 information last commit of boltsparts repo:
 
-dcadedc5ea43
-2022-11-07 23:47:58
+c3fcf8389b0c
+2022-11-08 09:50:45
 Bernd Hahnebach
 
-backend freecad, add method to create ibeam without fillets
+Merge pull request #6 from Andrej730/patch-2
 
+data: fixed columns order for lbeam_bluescope_equal
